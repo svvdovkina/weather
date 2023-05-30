@@ -40,7 +40,7 @@ function reducer(state, action) {
 function App() {
 
   const initialState = {
-    place: "New York",
+    place: "New Work",
     icon: conditionIcon["Partly cloudy"],
     weather: null
   }
