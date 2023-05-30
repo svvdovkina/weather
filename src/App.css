@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  
+}
+#root {
+  display: flex;
+  margin: 0;
+  background: rgb(128,121,255);
+  background: linear-gradient(0deg, rgba(128,121,255,1) 0%, rgba(54,185,255,1) 61%);
+}
+
+.main {
+  max-width: 500px;
+  width: 100%;
+  height: 100vh;
+  min-width: 300px;
+ 
+  margin: 0 auto;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+}
+
+.place {
+  padding: 10px 10px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.icon {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.icon img{
+  max-width: 150px;
+}
+
+.today {
+  background-color: rgba(255, 255, 255, 0.3);
+  width: calc(100% - 100px);
+  aspect-ratio: 1/1;
+  margin: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  text-align: center;
+  margin-bottom: 50px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 30px;
+}
+
+.but-forecast {
+  display: block;
+  margin: auto;
+  padding: 10px 25px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  color: rgba(0, 0, 0, 0.73);
+  border-radius: 8px;
+  box-shadow: 2px -2px 5px 0px rgba(0,0,0,0.2) inset;
+}
+
+.date {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.temp {
+  font-size: 7rem;
+}
+
+.today-additional {
+  display: flex;
+  flex-direction: column;
+}
+
+.condition {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.today-item{
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.key {
+  display: flex;
+  align-items: center;
+}
+
+.today-item>.key>img {
+  width: 20px;
+  margin-right: 10px;
+}
