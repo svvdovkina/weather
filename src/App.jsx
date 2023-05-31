@@ -61,7 +61,7 @@ function App() {
 
   return (
     <div className="main">
-      <Place state={state}/>
+      <Place state={state} getWeather={getWeather}/>
       <Icon state={state}/>
       <Today state={state}/>
       <button className='but-forecast'>See forecast</button>
