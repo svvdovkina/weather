@@ -3,7 +3,7 @@ const Forecast = ({state, toggleForecast, getIcon})=>{
     const daysForecast = state.weather.forecast.forecastday;
     const hourlyForecast = daysForecast[0].hour;
     //console.log(state.weather, hourlyForecast)
-    return <div className="forecast">
+    return <div className="main">
         <div>
             <h1>Forecast</h1>
             <h2>{state.place}</h2>
@@ -11,7 +11,7 @@ const Forecast = ({state, toggleForecast, getIcon})=>{
         
         <h3>Today</h3>
         <div className="horly-forecast">
-            {hourlyForecast.map((hf, ind)=>{
+            {hourlyForecast.slice(0, 4).map((hf, ind)=>{
                 return <div key={ind} className="forecast-hour">
                     <div className="forecast-hour-date">
                         {hf.time.slice(-5)}

@@ -78,9 +78,8 @@ function App() {
   }
 
   if (state.showForecast) {
-    return <div className="main">
-      <Forecast state={state} toggleForecast={toggleForecast} getIcon={getIcon}/>
-    </div>
+    return <Forecast state={state} toggleForecast={toggleForecast} getIcon={getIcon}/>
+
      
   }
 
