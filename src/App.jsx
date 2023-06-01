@@ -5,17 +5,15 @@ import Place from './components/Place';
 import Icon from './components/Icon';
 import Today from './components/Today';
 import { useEffect } from 'react';
+import Forecast from './components/Forecast';
 
 const ACTIONS = {
-  getWeather: 'getWeather'
+  getWeather: 'getWeather',
+  showForecast: 'showForecast'
 };
 
-function reducer(state, action) {
-  if (action.type == ACTIONS.getWeather) {
-    let data = action.payload;
-    const condition = data.current.condition.text;
-    ///console.log(data, condition);
-    let icon = conditionIcon['other'];
+const getIcon = (condition) =>{
+  let icon = conditionIcon['other'];
     if (condition in conditionIcon) {
       icon = conditionIcon[condition]
     } 
@@ -26,11 +24,25 @@ function reducer(state, action) {
         }
       };
     }
+  return icon
+}
+
+function reducer(state, action) {
+  if (action.type == ACTIONS.getWeather) {
+    let data = action.payload;
+    const condition = data.current.condition.text;
+    ///console.log(data, condition);
+    let icon = getIcon(condition);
     
     return {...state, 
       place: data.location.name, 
       weather: data,
       icon: icon
+    }
+  }
+  if (action.type == ACTIONS.showForecast) {
+    return {...state, 
+    showForecast: !state.showForecast
     }
   }
 }
@@ -42,7 +54,8 @@ function App() {
   const initialState = {
     place: "New Work",
     icon: conditionIcon["Partly cloudy"],
-    weather: null
+    weather: null,
+    showForecast: false
   }
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -57,14 +70,26 @@ function App() {
     })
   }
 
-  useEffect(()=>{getWeather('Belgrade')}, [])
+  useEffect(()=>{getWeather('Belgrade')}, []);
+
+  const toggleForecast = ()=>{
+    dispatch({type: ACTIONS.showForecast});
+    //console.log('show forecast', state.showForecast)
+  }
+
+  if (state.showForecast) {
+    return <div className="main">
+      <Forecast state={state} toggleForecast={toggleForecast} getIcon={getIcon}/>
+    </div>
+     
+  }
 
   return (
     <div className="main">
       <Place state={state} getWeather={getWeather}/>
       <Icon state={state}/>
       <Today state={state}/>
-      <button className='but-forecast'>See forecast</button>
+      <button onClick={toggleForecast} className='but-forecast'>See forecast</button>
     </div>
   )
 }

@@ -93,7 +93,8 @@ body {
 
 .but-forecast {
   display: block;
-  margin: auto;
+  margin: 0 auto;
+  margin-bottom: 20px;
   padding: 10px 25px;
   background-color: rgba(255, 255, 255, 0.9);
   border: none;
@@ -137,4 +138,41 @@ body {
 .today-item>.key>img {
   width: 20px;
   margin-right: 10px;
+}
+
+.forecast {
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.days-forecast {
+  margin-bottom: 20px;
+}
+
+.forecast-day {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.forecast-day-icon img{
+  height: 35px;
+}
+
+.horly-forecast {
+  display: flex;
+}
+
+.forecast-hour {
+  margin-right: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
