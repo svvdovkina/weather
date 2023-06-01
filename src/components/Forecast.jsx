@@ -8,10 +8,10 @@ const Forecast = ({state, toggleForecast, getIcon})=>{
             <h1>Forecast</h1>
             <h2>{state.place}</h2>
         </div>
-        
+        <div>
         <h3>Today</h3>
         <div className="horly-forecast">
-            {hourlyForecast.slice(0, 4).map((hf, ind)=>{
+            {hourlyForecast.map((hf, ind)=>{
                 return <div key={ind} className="forecast-hour">
                     <div className="forecast-hour-date">
                         {hf.time.slice(-5)}
@@ -25,8 +25,11 @@ const Forecast = ({state, toggleForecast, getIcon})=>{
                 </div>
             })}
         </div>
-        <h3>Next 3 days</h3>
+        </div>
+        
+        
         <div className="days-forecast">
+            <h3>Next 3 days</h3>
             {daysForecast.map((df, ind)=>{
                 let date = new Date(df.date).toDateString().split(' ').slice(1,3);
                 date = `${date[0]}, ${Number(date[1])}`;
