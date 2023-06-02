@@ -1,8 +1,18 @@
+import { useEffect } from "react";
+
 const Forecast = ({state, toggleForecast, getIcon})=>{
 
     const daysForecast = state.weather.forecast.forecastday;
-    const hourlyForecast = daysForecast[0].hour;
-    //console.log(state.weather, hourlyForecast)
+    let hourlyForecast = daysForecast[0].hour;
+    const nowHour = new Date(Date.now()).getHours();
+    hourlyForecast = hourlyForecast.filter((hf)=>{
+        const time = hf.time.slice(-5, -3);
+        return time >= nowHour - 1 
+    });
+    hourlyForecast = [...hourlyForecast, ...daysForecast[1].hour];
+    hourlyForecast = hourlyForecast.slice(0, 24);
+
+    //console.log(hourlyForecast)
     return <div className="main">
         <div>
             <h1>Forecast</h1>
@@ -12,7 +22,13 @@ const Forecast = ({state, toggleForecast, getIcon})=>{
         <h3>Today</h3>
         <div className="horly-forecast">
             {hourlyForecast.map((hf, ind)=>{
-                return <div key={ind} className="forecast-hour">
+                const time = hf.time.slice(-5, -3);
+                let className = "forecast-hour" ;
+                if (nowHour == time) {
+                    className += " now-hour";
+                }
+                //console.log(time, className)
+                return <div key={ind} className={className}>
                     <div className="forecast-hour-date">
                         {hf.time.slice(-5)}
                     </div> 
