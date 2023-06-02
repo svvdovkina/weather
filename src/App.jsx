@@ -12,10 +12,15 @@ const ACTIONS = {
   showForecast: 'showForecast'
 };
 
-const getIcon = (condition) =>{
+const getIcon = (condition, ligthTheme) =>{
   let icon = conditionIcon['other'];
-    if (condition in conditionIcon) {
-      icon = conditionIcon[condition]
+
+  //console.log(condition, ligthTheme)
+    if (condition == "Partly cloudy" && !ligthTheme){
+      icon = conditionIcon["Moon cloudy"];
+    }
+    else if (condition in conditionIcon) {
+      icon = conditionIcon[condition];
     } 
     else {
        for (let cond in conditionIcon) {
@@ -31,13 +36,15 @@ function reducer(state, action) {
   if (action.type == ACTIONS.getWeather) {
     let data = action.payload;
     const condition = data.current.condition.text;
-    ///console.log(data, condition);
-    let icon = getIcon(condition);
+    const ligthTheme = data.current.is_day;
+    //console.log(data, ligthTheme);
+    let icon = getIcon(condition, ligthTheme);
     
     return {...state, 
       place: data.location.name, 
       weather: data,
-      icon: icon
+      icon: icon,
+      isLightTheme: ligthTheme
     }
   }
   if (action.type == ACTIONS.showForecast) {
@@ -55,7 +62,8 @@ function App() {
     place: "New Work",
     icon: conditionIcon["Partly cloudy"],
     weather: null,
-    showForecast: false
+    showForecast: false,
+    isLightTheme: true
   }
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -76,15 +84,18 @@ function App() {
     dispatch({type: ACTIONS.showForecast});
     //console.log('show forecast', state.showForecast)
   }
+  let className = "main";
+
+  if (!state.isLightTheme) className += " dark-theme"
 
   if (state.showForecast) {
-    return <Forecast state={state} toggleForecast={toggleForecast} getIcon={getIcon}/>
+    return <Forecast  state={state} toggleForecast={toggleForecast} getIcon={getIcon}/>
 
      
   }
 
   return (
-    <div className="main">
+    <div className={className}>
       <Place state={state} getWeather={getWeather}/>
       <Icon state={state}/>
       <Today state={state}/>

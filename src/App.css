@@ -187,3 +187,8 @@ body {
   border: 3px solid rgba(255, 255, 255, 0.7);
   background-color: rgba(255, 255, 255, 0.3);
 }
+
+.dark-theme {
+  background: rgb(11,7,94);
+  background: linear-gradient(0deg, rgba(11,7,94,1) 16%, rgba(82,71,162,1) 100%);
+}

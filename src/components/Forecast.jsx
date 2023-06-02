@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 
 const Forecast = ({state, toggleForecast, getIcon})=>{
 
@@ -12,8 +11,12 @@ const Forecast = ({state, toggleForecast, getIcon})=>{
     hourlyForecast = [...hourlyForecast, ...daysForecast[1].hour];
     hourlyForecast = hourlyForecast.slice(0, 24);
 
+    let className = "main";
+
+    if (!state.isLightTheme) className += " dark-theme"
+
     //console.log(hourlyForecast)
-    return <div className="main">
+    return <div className={className}>
         <div>
             <h1>Forecast</h1>
             <h2>{state.place}</h2>
@@ -33,7 +36,7 @@ const Forecast = ({state, toggleForecast, getIcon})=>{
                         {hf.time.slice(-5)}
                     </div> 
                     <div className="forecast-day-icon">
-                        <img src={getIcon(hf.condition.text)} alt="condition icon" /> 
+                        <img src={getIcon(hf.condition.text, state.isLightTheme)} alt="condition icon" /> 
                     </div>
                     <div className="forecast-day_day-temp">
                         {Math.round(hf.temp_c)}&deg;
@@ -55,7 +58,7 @@ const Forecast = ({state, toggleForecast, getIcon})=>{
                         {date}
                     </div> 
                     <div className="forecast-day-icon">
-                        <img src={getIcon(df.day.condition.text)} alt="condition icon" /> 
+                        <img src={getIcon(df.day.condition.text, state.isLightTheme)} alt="condition icon" /> 
                     </div>
                     <div className="forecast-day_day-temp">
                         {Math.round(df.day.maxtemp_c)}&deg;
