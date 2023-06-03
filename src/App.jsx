@@ -12,11 +12,11 @@ const ACTIONS = {
   showForecast: 'showForecast'
 };
 
-const getIcon = (condition, ligthTheme) =>{
+const getIcon = (condition, hour) =>{
   let icon = conditionIcon['other'];
 
   //console.log(condition, ligthTheme)
-    if (condition == "Partly cloudy" && !ligthTheme){
+    if ((hour <= 5 || hour >= 21) && condition == "Partly cloudy" ){
       icon = conditionIcon["Moon cloudy"];
     }
     else if (condition in conditionIcon) {
@@ -38,7 +38,7 @@ function reducer(state, action) {
     const condition = data.current.condition.text;
     const ligthTheme = data.current.is_day;
     //console.log(data, ligthTheme);
-    let icon = getIcon(condition, ligthTheme);
+    let icon = getIcon(condition, 6 - ligthTheme);
     
     return {...state, 
       place: data.location.name, 

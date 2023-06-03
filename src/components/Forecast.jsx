@@ -36,7 +36,7 @@ const Forecast = ({state, toggleForecast, getIcon})=>{
                         {hf.time.slice(-5)}
                     </div> 
                     <div className="forecast-day-icon">
-                        <img src={getIcon(hf.condition.text, state.isLightTheme)} alt="condition icon" /> 
+                        <img src={getIcon(hf.condition.text, time)} alt="condition icon" /> 
                     </div>
                     <div className="forecast-day_day-temp">
                         {Math.round(hf.temp_c)}&deg;
@@ -58,7 +58,7 @@ const Forecast = ({state, toggleForecast, getIcon})=>{
                         {date}
                     </div> 
                     <div className="forecast-day-icon">
-                        <img src={getIcon(df.day.condition.text, state.isLightTheme)} alt="condition icon" /> 
+                        <img src={getIcon(df.day.condition.text, 10)} alt="condition icon" /> 
                     </div>
                     <div className="forecast-day_day-temp">
                         {Math.round(df.day.maxtemp_c)}&deg;
