@@ -84,7 +84,7 @@ function App() {
     dispatch({type: ACTIONS.showForecast});
     //console.log('show forecast', state.showForecast)
   }
-  let className = "main";
+  let className = "base";
 
   if (!state.isLightTheme) className += " dark-theme"
 
@@ -96,11 +96,14 @@ function App() {
 
   return (
     <div className={className}>
-      <Place state={state} getWeather={getWeather}/>
-      <Icon state={state}/>
-      <Today state={state}/>
-      <button onClick={toggleForecast} className='but-forecast'>See forecast</button>
+      <div className="main">
+        <Place state={state} getWeather={getWeather}/>
+        <Icon state={state}/>
+        <Today state={state}/>
+        <button onClick={toggleForecast} className='but-forecast'>See forecast</button>
     </div>
+    </div>
+    
   )
 }
 

@@ -11,12 +11,13 @@ const Forecast = ({state, toggleForecast, getIcon})=>{
     hourlyForecast = [...hourlyForecast, ...daysForecast[1].hour];
     hourlyForecast = hourlyForecast.slice(0, 24);
 
-    let className = "main";
+    let className = "base";
 
     if (!state.isLightTheme) className += " dark-theme"
 
     //console.log(hourlyForecast)
     return <div className={className}>
+        <div className="main">
         <div>
             <h1>Forecast</h1>
             <h2>{state.place}</h2>
@@ -71,6 +72,7 @@ const Forecast = ({state, toggleForecast, getIcon})=>{
             })}
         </div>
         <button onClick={toggleForecast} className="but-forecast">Back</button>
+    </div>
     </div>
 }
 
