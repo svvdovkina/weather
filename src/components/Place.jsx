@@ -6,17 +6,17 @@ const Place = ({state, getWeather})=>{
     const [suggestions, setSuggestions] = useState([]);
 
     const getSuggestions = async (e)=>{
-        console.log(e.target.value);
+        //console.log(e.target.value);
         const city = e.target.value;
         const key = 'd3fc824005734fb29d3134514232305';
         const url = `http://api.weatherapi.com/v1/search.json?key=${key}&q=${city}`;
         const response = await fetch(url);
         const data = await response.json();
-        console.log(data)
+        //console.log(data)
         if (data){
             const newSugg = data.map(it=>`${it.name} (${it.country})`);
         setSuggestions(newSugg);
-        console.log(newSugg)
+        //console.log(newSugg)
         }
         
     }

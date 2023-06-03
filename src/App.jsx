@@ -38,7 +38,7 @@ function reducer(state, action) {
     const condition = data.current.condition.text;
     const ligthTheme = data.current.is_day;
     //console.log(data, ligthTheme);
-    let icon = getIcon(condition, 6 - ligthTheme);
+    let icon = getIcon(condition, 5 + ligthTheme);
     
     return {...state, 
       place: data.location.name, 
